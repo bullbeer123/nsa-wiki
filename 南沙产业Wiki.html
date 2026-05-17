@@ -304,6 +304,59 @@
       .dimension-grid { grid-template-columns: 1fr 1fr; }
       #healthRadarChart { height: 260px; }
     }
+
+    /* 企业清单样式 */
+    .enterprise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .enterprise-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .enterprise-card:hover { border-color: #409EFF; box-shadow: 0 2px 8px rgba(64,158,255,0.12); transform: translateY(-2px); }
+    .enterprise-card .ent-name { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; }
+    .enterprise-card .ent-role {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .enterprise-card .ent-desc { font-size: 11px; color: #999; line-height: 1.4; }
+
+    .relation-list { margin: 10px 0; }
+    .relation-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #eee;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .relation-item .rel-arrow { color: #409EFF; font-weight: bold; flex-shrink: 0; }
+    .relation-item .rel-type {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #ecf5ff;
+      color: #409EFF;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .enterprise-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -405,191 +458,262 @@
 
     <div class="card" id="industries">
       <h2>📚 产业Wiki详情</h2>
-      <p style="color:#666;margin-bottom:16px;">南沙"8+2+3"现代化产业体系详细词条</p>
+      <p style="color:#666;margin-bottom:16px;">南沙"8+2+3"现代化产业体系详细词条 · 含重点企业清单与企业关系</p>
 
       <div id="ind-1" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #5470C6;">
         <h3>1. 智能网联与新能源汽车</h3>
         <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>以整车制造为核心，融合自动驾驶、车路协同、智能座舱等前沿技术的新一代汽车产业</td></tr>
+          <tr><th>产业定义</th><td>以整车制造为核心，融合自动驾驶、车路协同、智能座舱等前沿技术的新一代汽车产业，南沙构建两千亿级汽车产业集群</td></tr>
           <tr><th>产业链位置</th><td>整车制造（中游）+ 自动驾驶技术研发（上游）+ 充电基础设施（下游）</td></tr>
-          <tr><th>代表企业</th><td>广汽丰田、小马智行、合创汽车、南沙氢跑</td></tr>
-          <tr><th>企业规模</th><td>约45家重点企业</td></tr>
-          <tr><th>关联产业</th><td>新能源与新型储能（产业链上下游）、半导体与集成电路（芯片依赖）、智能装备与机器人（智能制造支撑）</td></tr>
-          <tr><th>政策支持</th><td>南沙智能网联汽车测试道路开放、自动驾驶示范运营政策</td></tr>
-          <tr><th>竞争优势</th><td>广州汽车产业基础 + 南沙自动驾驶先行示范区</td></tr>
+          <tr><th>政策支持</th><td>南沙智能网联汽车测试道路开放、自动驾驶示范运营政策、新能源汽车购置补贴</td></tr>
+          <tr><th>竞争优势</th><td>广州汽车产业基础雄厚 + 南沙自动驾驶先行示范区 + 两千亿级产业集群</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（8家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">广汽丰田</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 整车制造龙头</div><div class="ent-desc">丰田与广汽合资，年产值超千亿，南沙最大工业企业</div></div><div class="enterprise-card"><div class="ent-name">小马智行</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 自动驾驶</div><div class="ent-desc">L4级自动驾驶技术领军企业，Robotaxi示范运营</div></div><div class="enterprise-card"><div class="ent-name">广州樱泰</div><div class="ent-role" style="background:#91CC7520;color:#91CC75">◆ 一级供应商</div><div class="ent-desc">广汽丰田核心内饰件供应商，日资企业</div></div><div class="enterprise-card"><div class="ent-name">爱德克斯</div><div class="ent-role" style="background:#91CC7520;color:#91CC75">◆ 一级供应商</div><div class="ent-desc">制动系统供应商，丰田体系核心配套企业</div></div><div class="enterprise-card"><div class="ent-name">丰田发动机</div><div class="ent-role" style="background:#91CC7520;color:#91CC75">◆ 一级供应商</div><div class="ent-desc">南沙发动机生产基地，为广汽丰田配套</div></div><div class="enterprise-card"><div class="ent-name">立昇科技</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 智能网联</div><div class="ent-desc">智能座舱与车联网技术提供商</div></div><div class="enterprise-card"><div class="ent-name">合创汽车</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 新能源整车</div><div class="ent-desc">新能源汽车品牌，广汽集团与蔚来合作</div></div><div class="enterprise-card"><div class="ent-name">南沙氢跑</div><div class="ent-role" style="background:#FC845220;color:#FC8452">◆ 氢能运营</div><div class="ent-desc">氢燃料电池汽车示范运营项目</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>广汽丰田</span><span class="rel-arrow">→</span><span>广州樱泰</span><span class="rel-type">内饰件供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>广汽丰田</span><span class="rel-arrow">→</span><span>爱德克斯</span><span class="rel-type">制动系统供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>广汽丰田</span><span class="rel-arrow">→</span><span>丰田发动机</span><span class="rel-type">发动机供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>广汽丰田</span><span class="rel-arrow">→</span><span>小马智行</span><span class="rel-type">自动驾驶系统集成</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>广汽丰田</span><span class="rel-arrow">→</span><span>立昇科技</span><span class="rel-type">智能座舱方案</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>小马智行</span><span class="rel-arrow">→</span><span>合创汽车</span><span class="rel-type">自动驾驶方案搭载</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-2" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #91CC75;">
         <h3>2. 船舶与海洋工程</h3>
-        <span class="industry-tag" style="background:#91CC75;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>涵盖大型船舶制造、海洋工程装备、海上平台建设等高端装备制造业</td></tr>
+          <tr><th>产业定义</th><td>涵盖大型船舶制造、海洋工程装备、海上平台建设等高端装备制造业，全国三大造船基地之一</td></tr>
           <tr><th>产业链位置</th><td>船舶设计（上游）+ 船舶制造（中游）+ 航运服务（下游）</td></tr>
-          <tr><th>代表企业</th><td>广船国际（龙穴造船基地）、中船黄埔文冲</td></tr>
-          <tr><th>企业规模</th><td>约28家重点企业</td></tr>
-          <tr><th>关联产业</th><td>深海深空（技术交叉）、新能源与新型储能（绿色能源）、物流与供应链（港口物流）</td></tr>
-          <tr><th>政策支持</th><td>南沙船舶制造产业扶持政策、龙穴造船基地专项规划</td></tr>
-          <tr><th>竞争优势</th><td>华南最大造船基地 + 深水良港资源</td></tr>
+          <tr><th>政策支持</th><td>南沙船舶制造产业扶持政策、龙穴造船基地专项规划、国家海洋经济发展示范区</td></tr>
+          <tr><th>竞争优势</th><td>华南最大造船基地 + 深水良港资源 + "梦想"号大洋钻探船</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">广船国际</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 船舶制造</div><div class="ent-desc">中船集团旗下，华南最大造船企业，手持订单排至2030年</div></div><div class="enterprise-card"><div class="ent-name">中船黄埔文冲</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 船舶制造</div><div class="ent-desc">中船集团旗下，军工与民用船舶制造</div></div><div class="enterprise-card"><div class="ent-name">中船龙穴基地</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 造船基地</div><div class="ent-desc">华南最大造船基地，广船国际运营</div></div><div class="enterprise-card"><div class="ent-name">南方海洋实验室</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 科研平台</div><div class="ent-desc">南方海洋科学与工程广东省实验室</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>广船国际</span><span class="rel-arrow">→</span><span>中船龙穴基地</span><span class="rel-type">运营主体</span><span style="font-size:11px;color:#999">[隶属]</span></div><div class="relation-item"><span>广船国际</span><span class="rel-arrow">→</span><span>中船黄埔文冲</span><span class="rel-type">同属中船集团</span><span style="font-size:11px;color:#999">[兄弟企业]</span></div><div class="relation-item"><span>广船国际</span><span class="rel-arrow">→</span><span>南方海洋实验室</span><span class="rel-type">深海装备联合研发</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-3" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #EE6666;">
         <h3>3. 生物医药与健康</h3>
-        <span class="industry-tag" style="background:#EE6666;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>创新药物研发、高端医疗器械、健康管理服务等大健康产业</td></tr>
+          <tr><th>产业定义</th><td>创新药物研发、高端医疗器械、健康管理服务等大健康产业，集聚超400家企业</td></tr>
           <tr><th>产业链位置</th><td>新药研发（上游）+ 生产制造（中游）+ 医疗服务（下游）</td></tr>
-          <tr><th>代表企业</th><td>一品红药业、康方生物、因明生物</td></tr>
-          <tr><th>企业规模</th><td>约35家重点企业</td></tr>
-          <tr><th>关联产业</th><td>细胞与基因（技术关联）、绿色石化与新材料（材料支撑）</td></tr>
-          <tr><th>政策支持</th><td>南沙生物医药产业发展专项资金、临床研究政策</td></tr>
-          <tr><th>竞争优势</th><td>粤港澳医疗合作 + 中山大学附属医院集群</td></tr>
+          <tr><th>政策支持</th><td>南沙生物医药产业发展专项资金、临床研究政策、粤港澳医疗合作政策</td></tr>
+          <tr><th>竞争优势</th><td>粤港澳医疗合作 + 中山大学附属医院集群 + 6家三甲医院规划</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（6家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">一品红药业</div><div class="ent-role" style="background:#EE666620;color:#EE6666">◆ 创新药研发</div><div class="ent-desc">A股上市，联瑞制药南沙智能制造基地已投产</div></div><div class="enterprise-card"><div class="ent-name">联瑞制药</div><div class="ent-role" style="background:#EE666620;color:#EE6666">◆ 药品生产</div><div class="ent-desc">一品红全资子公司，22万㎡智能制造基地</div></div><div class="enterprise-card"><div class="ent-name">康方生物</div><div class="ent-role" style="background:#EE666620;color:#EE6666">◆ 创新药研发</div><div class="ent-desc">港股上市，双抗药物全球领先</div></div><div class="enterprise-card"><div class="ent-name">因明生物</div><div class="ent-role" style="background:#86D56020;color:#86D560">◆ 细胞治疗</div><div class="ent-desc">眼科及肿瘤细胞治疗创新企业</div></div><div class="enterprise-card"><div class="ent-name">龙沙制药</div><div class="ent-role" style="background:#EE666620;color:#EE6666">◆ 国际药企</div><div class="ent-desc">全球领先CDMO企业，南沙设厂</div></div><div class="enterprise-card"><div class="ent-name">国药控股</div><div class="ent-role" style="background:#EA7CCC20;color:#EA7CCC">◆ 医药流通</div><div class="ent-desc">央企中国医药集团旗下，医药供应链龙头</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>一品红药业</span><span class="rel-arrow">→</span><span>联瑞制药</span><span class="rel-type">全资控股</span><span style="font-size:11px;color:#999">[隶属]</span></div><div class="relation-item"><span>一品红药业</span><span class="rel-arrow">→</span><span>龙沙制药</span><span class="rel-type">CDMO服务合作</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>康方生物</span><span class="rel-arrow">→</span><span>国药控股</span><span class="rel-type">药品经销渠道</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>因明生物</span><span class="rel-arrow">→</span><span>一品红药业</span><span class="rel-type">创新药联合研发</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-4" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #FAC858;">
         <h3>4. 低空经济与航空航天</h3>
-        <span class="industry-tag" style="background:#FAC858;color:#333;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>低空飞行器研发制造、通用航空服务、卫星应用及航天配套产业</td></tr>
+          <tr><th>产业定义</th><td>低空飞行器研发制造、通用航空服务、卫星应用及航天配套产业，全国首座低空风洞</td></tr>
           <tr><th>产业链位置</th><td>飞行器研发（上游）+ 整机制造（中游）+ 运营服务（下游）</td></tr>
-          <tr><th>代表企业</th><td>亿航智能、峰飞航空、南沙航天科技园</td></tr>
-          <tr><th>企业规模</th><td>约18家重点企业</td></tr>
-          <tr><th>关联产业</th><td>智能无人系统（技术迭代）、深海深空（航天技术）</td></tr>
-          <tr><th>政策支持</th><td>南沙区低空经济产业发展专项政策</td></tr>
-          <tr><th>竞争优势</th><td>粤港澳低空经济试验田 + 空域管理创新</td></tr>
+          <tr><th>政策支持</th><td>南沙区低空经济产业发展专项政策、低空空域管理创新试点</td></tr>
+          <tr><th>竞争优势</th><td>粤港澳低空经济试验田 + 空域管理创新 + "一箭一星一院一基金"格局</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（5家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">亿航智能</div><div class="ent-role" style="background:#FAC85820;color:#FAC858">◆ eVTOL飞行器</div><div class="ent-desc">纳斯达克上市，全球首张无人驾驶载人航空器型号合格证</div></div><div class="enterprise-card"><div class="ent-name">中科宇航</div><div class="ent-role" style="background:#57C17B20;color:#57C17B">◆ 商业航天</div><div class="ent-desc">中科院旗下，运载火箭研制与发射服务</div></div><div class="enterprise-card"><div class="ent-name">峰飞航空</div><div class="ent-role" style="background:#FAC85820;color:#FAC858">◆ eVTOL飞行器</div><div class="ent-desc">电动垂直起降飞行器研发企业</div></div><div class="enterprise-card"><div class="ent-name">南沙航天科技园</div><div class="ent-role" style="background:#57C17B20;color:#57C17B">◆ 航天产业园</div><div class="ent-desc">集聚航天配套企业，商业航天全产业链</div></div><div class="enterprise-card"><div class="ent-name">广州南沙低空科技</div><div class="ent-role" style="background:#FAC85820;color:#FAC858">◆ 低空运营</div><div class="ent-desc">南沙交通投资集团全资持股，低空经济运营平台</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>亿航智能</span><span class="rel-arrow">→</span><span>峰飞航空</span><span class="rel-type">eVTOL技术竞争与合作</span><span style="font-size:11px;color:#999">[同业]</span></div><div class="relation-item"><span>中科宇航</span><span class="rel-arrow">→</span><span>南沙航天科技园</span><span class="rel-type">园区入驻</span><span style="font-size:11px;color:#999">[入驻]</span></div><div class="relation-item"><span>亿航智能</span><span class="rel-arrow">→</span><span>广州南沙低空科技</span><span class="rel-type">低空运营合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-5" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #73C0DE;">
         <h3>5. 半导体与集成电路</h3>
-        <span class="industry-tag" style="background:#73C0DE;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>芯片设计、晶圆制造、封装测试、EDA工具等集成电路全产业链</td></tr>
+          <tr><th>产业定义</th><td>芯片设计、晶圆制造、封装测试、EDA工具等集成电路全产业链，建成2平方公里集成电路产业园</td></tr>
           <tr><th>产业链位置</th><td>芯片设计（上游）+ 晶圆制造（中游）+ 封装测试（下游）</td></tr>
-          <tr><th>代表企业</th><td>芯粤能、芯聚能、南砂晶圆</td></tr>
-          <tr><th>企业规模</th><td>约22家重点企业</td></tr>
-          <tr><th>关联产业</th><td>智能装备与机器人（硬件支撑）、智能无人系统（核心器件）</td></tr>
-          <tr><th>政策支持</th><td>南沙集成电路产业扶持政策、芯片产业基金</td></tr>
-          <tr><th>竞争优势</th><td>粤港澳大湾区集成电路产业集聚 + 第三代半导体布局</td></tr>
+          <tr><th>政策支持</th><td>南沙集成电路产业扶持政策、芯片产业基金、第三代半导体专项政策</td></tr>
+          <tr><th>竞争优势</th><td>粤港澳大湾区集成电路产业集聚 + 第三代半导体（SiC）先发布局</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（5家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">芯粤能</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 芯片制造</div><div class="ent-desc">碳化硅芯片制造领军企业，专注车规级SiC器件</div></div><div class="enterprise-card"><div class="ent-name">芯聚能</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 功率半导体</div><div class="ent-desc">IGBT及SiC功率模块设计制造企业</div></div><div class="enterprise-card"><div class="ent-name">南砂晶圆</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 衬底材料</div><div class="ent-desc">碳化硅衬底材料供应商，半导体产业链上游</div></div><div class="enterprise-card"><div class="ent-name">奕行智能</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 芯片设计</div><div class="ent-desc">AI芯片与智能驾驶芯片设计企业</div></div><div class="enterprise-card"><div class="ent-name">晶科电子</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 封装测试</div><div class="ent-desc">LED芯片封装与模组制造，港股上市</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>南砂晶圆</span><span class="rel-arrow">→</span><span>芯粤能</span><span class="rel-type">碳化硅衬底供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>芯粤能</span><span class="rel-arrow">→</span><span>芯聚能</span><span class="rel-type">晶圆代工服务</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>奕行智能</span><span class="rel-arrow">→</span><span>芯粤能</span><span class="rel-type">芯片设计流片合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>芯聚能</span><span class="rel-arrow">→</span><span>晶科电子</span><span class="rel-type">封装测试服务</span><span style="font-size:11px;color:#999">[供应链]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-6" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #3BA272;">
         <h3>6. 绿色石化与新材料</h3>
-        <span class="industry-tag" style="background:#3BA272;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>绿色化工、高性能复合材料、先进金属材料等新材料研发与生产</td></tr>
+          <tr><th>产业定义</th><td>绿色化工、高性能复合材料、先进金属材料等新材料研发与生产，世界500强企业支撑</td></tr>
           <tr><th>产业链位置</th><td>材料研发（上游）+ 材料生产（中游）+ 下游应用（下游）</td></tr>
-          <tr><th>代表企业</th><td>广钢气体、金发科技（南沙基地）、东丽高新</td></tr>
-          <tr><th>企业规模</th><td>约25家重点企业</td></tr>
-          <tr><th>关联产业</th><td>新能源与新型储能（材料供应）、智能装备与机器人（新材料应用）</td></tr>
-          <tr><th>政策支持</th><td>南沙新材料产业发展专项资金</td></tr>
-          <tr><th>竞争优势</th><td>绿色循环经济模式 + 终端应用市场广阔</td></tr>
+          <tr><th>政策支持</th><td>南沙新材料产业发展专项资金、绿色制造专项政策</td></tr>
+          <tr><th>竞争优势</th><td>绿色循环经济模式 + 世界500强化工企业集聚 + 终端应用市场广阔</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（5家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">沙伯基础SABIC</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 化工巨头</div><div class="ent-desc">全球最大石化企业之一，世界500强，南沙设生产基地</div></div><div class="enterprise-card"><div class="ent-name">巴斯夫BASF</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 化工巨头</div><div class="ent-desc">全球最大化工企业，世界500强，南沙布局</div></div><div class="enterprise-card"><div class="ent-name">广钢气体</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 工业气体</div><div class="ent-desc">电子级特种气体供应商，科创板上市</div></div><div class="enterprise-card"><div class="ent-name">金发科技</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 改性塑料</div><div class="ent-desc">A股上市，亚太最大改性塑料企业，南沙基地</div></div><div class="enterprise-card"><div class="ent-name">东丽高新</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 复合材料</div><div class="ent-desc">日本东丽集团旗下，碳纤维复合材料生产</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>沙伯基础SABIC</span><span class="rel-arrow">→</span><span>金发科技</span><span class="rel-type">原材料供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>巴斯夫BASF</span><span class="rel-arrow">→</span><span>广钢气体</span><span class="rel-type">特种气体供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>金发科技</span><span class="rel-arrow">→</span><span>东丽高新</span><span class="rel-type">复合材料技术交流</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>广钢气体</span><span class="rel-arrow">→</span><span>芯粤能</span><span class="rel-type">电子级特种气体供应</span><span style="font-size:11px;color:#999">[供应链]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-7" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #FC8452;">
         <h3>7. 新能源与新型储能</h3>
-        <span class="industry-tag" style="background:#FC8452;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
           <tr><th>产业定义</th><td>太阳能、风能、氢能、储能电池、智能电网等新能源全产业链</td></tr>
           <tr><th>产业链位置</th><td>能源设备制造（上游）+ 能源生产（中游）+ 储能应用（下游）</td></tr>
-          <tr><th>代表企业</th><td>融捷能源、巨湾技研、南沙能源</td></tr>
-          <tr><th>企业规模</th><td>约30家重点企业</td></tr>
-          <tr><th>关联产业</th><td>智能网联与新能源汽车（产业链上下游）、绿色石化与新材料（材料供应）、智能装备与机器人（绿色智造）</td></tr>
-          <tr><th>政策支持</th><td>南沙区新能源与新型储能产业发展扶持办法</td></tr>
-          <tr><th>竞争优势</th><td>制氢-储氢-用氢一体化 + 新型储能示范基地</td></tr>
+          <tr><th>政策支持</th><td>南沙区新能源与新型储能产业发展扶持办法、氢能产业发展专项政策</td></tr>
+          <tr><th>竞争优势</th><td>制氢-储氢-用氢一体化 + 新型储能示范基地 + 氢燃料电池汽车示范运营</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（5家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">融捷集团</div><div class="ent-role" style="background:#FC845220;color:#FC8452">◆ 锂电材料</div><div class="ent-desc">锂电池正极材料龙头企业，新能源全产业链布局</div></div><div class="enterprise-card"><div class="ent-name">巨湾技研</div><div class="ent-role" style="background:#FC845220;color:#FC8452">◆ 快充电池</div><div class="ent-desc">广汽集团孵化的快充电池技术企业，XFC极速充电</div></div><div class="enterprise-card"><div class="ent-name">广钢气体</div><div class="ent-role" style="background:#3BA27220;color:#3BA272">◆ 氢能</div><div class="ent-desc">制氢与氢能供应，布局南沙氢能产业链</div></div><div class="enterprise-card"><div class="ent-name">广东省能源集团</div><div class="ent-role" style="background:#FC845220;color:#FC8452">◆ 能源运营</div><div class="ent-desc">省属能源国企，布局新能源发电与储能</div></div><div class="enterprise-card"><div class="ent-name">南沙氢跑</div><div class="ent-role" style="background:#FC845220;color:#FC8452">◆ 氢能运营</div><div class="ent-desc">氢燃料电池汽车示范运营项目</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>融捷集团</span><span class="rel-arrow">→</span><span>巨湾技研</span><span class="rel-type">锂电池材料供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>广钢气体</span><span class="rel-arrow">→</span><span>南沙氢跑</span><span class="rel-type">氢燃料供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>巨湾技研</span><span class="rel-arrow">→</span><span>广汽丰田</span><span class="rel-type">快充电池配套</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>广东省能源集团</span><span class="rel-arrow">→</span><span>融捷集团</span><span class="rel-type">储能项目合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-8" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #9A60B4;">
         <h3>8. 智能装备与机器人产业</h3>
-        <span class="industry-tag" style="background:#9A60B4;">🔧 先进制造业</span>
+        <span class="industry-tag" style="background:#5470C6;">🔧 先进制造业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>工业机器人、服务机器人、数控机床、智能制造装备</td></tr>
+          <tr><th>产业定义</th><td>工业机器人、服务机器人、数控机床、智能制造装备，实现国产深海机器人首次海外出口</td></tr>
           <tr><th>产业链位置</th><td>核心零部件（上游）+ 整机装备（中游）+ 系统集成（下游）</td></tr>
-          <tr><th>代表企业</th><td>广州数控、博智林机器人、明珞装备</td></tr>
-          <tr><th>企业规模</th><td>约32家重点企业</td></tr>
-          <tr><th>关联产业</th><td>智能网联与新能源汽车（智能制造支撑）、半导体与集成电路（硬件支撑）、绿色石化与新材料（新材料应用）</td></tr>
-          <tr><th>政策支持</th><td>南沙智能制造产业发展专项资金</td></tr>
-          <tr><th>竞争优势</th><td>制造业基础雄厚 + 智能化转型需求强劲</td></tr>
+          <tr><th>政策支持</th><td>南沙智能制造产业发展专项资金、机器人产业专项政策</td></tr>
+          <tr><th>竞争优势</th><td>制造业基础雄厚 + 智能化转型需求强劲 + 水下机器人全球领先</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（5家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">广州数控</div><div class="ent-role" style="background:#9A60B420;color:#9A60B4">◆ 数控系统</div><div class="ent-desc">国内领先的数控系统与工业机器人企业</div></div><div class="enterprise-card"><div class="ent-name">博智林机器人</div><div class="ent-role" style="background:#9A60B420;color:#9A60B4">◆ 建筑机器人</div><div class="ent-desc">碧桂园旗下，建筑机器人研发与制造</div></div><div class="enterprise-card"><div class="ent-name">明珞装备</div><div class="ent-role" style="background:#9A60B420;color:#9A60B4">◆ 智能制造</div><div class="ent-desc">汽车焊装自动化产线集成商，服务全球车企</div></div><div class="enterprise-card"><div class="ent-name">远正智能</div><div class="ent-role" style="background:#9A60B420;color:#9A60B4">◆ 智能装备</div><div class="ent-desc">隐形冠军企业，智能制造解决方案提供商</div></div><div class="enterprise-card"><div class="ent-name">科伊斯数字</div><div class="ent-role" style="background:#9A60B420;color:#9A60B4">◆ 数字装备</div><div class="ent-desc">3D数字装备与智能视觉技术企业</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>广州数控</span><span class="rel-arrow">→</span><span>明珞装备</span><span class="rel-type">数控系统供应</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>博智林机器人</span><span class="rel-arrow">→</span><span>明珞装备</span><span class="rel-type">机器人集成应用</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>广州数控</span><span class="rel-arrow">→</span><span>远正智能</span><span class="rel-type">智能制造技术合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-9" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #EA7CCC;">
         <h3>9. 现代金融业</h3>
         <span class="industry-tag" style="background:#EA7CCC;">💼 现代服务业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>跨境金融、科技金融、绿色金融、航运金融等现代金融服务</td></tr>
+          <tr><th>产业定义</th><td>跨境金融、科技金融、绿色金融、航运金融等现代金融服务，持牌法人机构占全市1/4</td></tr>
           <tr><th>产业链位置</th><td>金融服务提供（核心）+ 金融科技赋能（支撑）</td></tr>
-          <tr><th>代表企业</th><td>广州期货交易所、南沙金控、粤港澳大湾区国际商业银行（筹建）</td></tr>
-          <tr><th>企业规模</th><td>约55家金融机构</td></tr>
-          <tr><th>关联产业</th><td>智能网联与新能源汽车（金融支撑）、生物医药与健康（金融支撑）、物流与供应链（产融结合）</td></tr>
-          <tr><th>政策支持</th><td>南沙金融业发展扶持政策、跨境贸易投资便利化</td></tr>
-          <tr><th>竞争优势</th><td>跨境金融创新试验区 + 期货交易所集聚</td></tr>
+          <tr><th>政策支持</th><td>南沙金融30条（南沙金融业发展扶持政策）、跨境贸易投资便利化</td></tr>
+          <tr><th>竞争优势</th><td>跨境金融创新试验区 + 广州期货交易所落户 + 自由贸易账户体系</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">广州期货交易所</div><div class="ent-role" style="background:#EA7CCC20;color:#EA7CCC">◆ 期货交易</div><div class="ent-desc">全国第五家期货交易所，服务绿色金融与跨境金融</div></div><div class="enterprise-card"><div class="ent-name">南沙金控</div><div class="ent-role" style="background:#EA7CCC20;color:#EA7CCC">◆ 金融控股</div><div class="ent-desc">南沙开发区金融控股平台，产业投资与金融服务</div></div><div class="enterprise-card"><div class="ent-name">粤港澳大湾区银行(筹)</div><div class="ent-role" style="background:#EA7CCC20;color:#EA7CCC">◆ 商业银行</div><div class="ent-desc">大湾区首家国际商业银行，筹备建设中</div></div><div class="enterprise-card"><div class="ent-name">粤财控股(南沙)</div><div class="ent-role" style="background:#EA7CCC20;color:#EA7CCC">◆ 投资平台</div><div class="ent-desc">广东省属金融控股平台南沙分支机构</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>广州期货交易所</span><span class="rel-arrow">→</span><span>南沙金控</span><span class="rel-type">金融业务合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>南沙金控</span><span class="rel-arrow">→</span><span>粤财控股(南沙)</span><span class="rel-type">产业基金合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>广州期货交易所</span><span class="rel-arrow">→</span><span>广汽丰田</span><span class="rel-type">碳期货服务</span><span style="font-size:11px;color:#999">[供应链]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-10" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #48B8D0;">
         <h3>10. 物流与供应链</h3>
-        <span class="industry-tag" style="background:#48B8D0;">💼 现代服务业</span>
+        <span class="industry-tag" style="background:#EA7CCC;">💼 现代服务业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>港口物流、智慧供应链、冷链物流、跨境电商物流等</td></tr>
+          <tr><th>产业定义</th><td>港口物流、智慧供应链、冷链物流、跨境电商物流，跨境电商高速增长</td></tr>
           <tr><th>产业链位置</th><td>国际航运（核心）+ 仓储配送（中游）+ 供应链服务（下游）</td></tr>
-          <tr><th>代表企业</th><td>南沙港集团、中远海运、唯品会物流</td></tr>
-          <tr><th>企业规模</th><td>约60家重点企业</td></tr>
-          <tr><th>关联产业</th><td>智能网联与新能源汽车（供应链服务）、船舶与海洋工程（港口物流）</td></tr>
-          <tr><th>政策支持</th><td>南沙现代物流业发展政策</td></tr>
-          <tr><th>竞争优势</th><td>华南最大枢纽港 + 粤港澳大湾区贸易通道</td></tr>
+          <tr><th>政策支持</th><td>南沙现代物流业发展政策、保税物流政策、跨境电商综试区政策</td></tr>
+          <tr><th>竞争优势</th><td>华南最大枢纽港 + 粤港澳大湾区贸易通道 + 全国最大车厘子进口口岸</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">南沙港集团</div><div class="ent-role" style="background:#48B8D020;color:#48B8D0">◆ 港口运营</div><div class="ent-desc">华南最大枢纽港运营商，12个10万吨级泊位</div></div><div class="enterprise-card"><div class="ent-name">中远海运</div><div class="ent-role" style="background:#48B8D020;color:#48B8D0">◆ 航运物流</div><div class="ent-desc">全球最大航运企业之一，南沙港核心航线运营</div></div><div class="enterprise-card"><div class="ent-name">唯品会物流</div><div class="ent-role" style="background:#48B8D020;color:#48B8D0">◆ 电商物流</div><div class="ent-desc">唯品会自建物流体系，南沙保税仓运营</div></div><div class="enterprise-card"><div class="ent-name">广州港股份</div><div class="ent-role" style="background:#48B8D020;color:#48B8D0">◆ 港口运营</div><div class="ent-desc">A股上市，南沙港区投资与运营主体</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>南沙港集团</span><span class="rel-arrow">→</span><span>广州港股份</span><span class="rel-type">同属广州港集团旗下</span><span style="font-size:11px;color:#999">[隶属]</span></div><div class="relation-item"><span>南沙港集团</span><span class="rel-arrow">→</span><span>中远海运</span><span class="rel-type">航线运营合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>中远海运</span><span class="rel-arrow">→</span><span>唯品会物流</span><span class="rel-type">跨境电商物流服务</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>南沙港集团</span><span class="rel-arrow">→</span><span>广船国际</span><span class="rel-type">造船与港口联动</span><span style="font-size:11px;color:#999">[供应链]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-11" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #C9CD56;">
         <h3>11. 智能无人系统</h3>
-        <span class="industry-tag" style="background:#C9CD56;color:#333;">🚀 未来产业</span>
+        <span class="industry-tag" style="background:#C9CD56;">🚀 未来产业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>无人机、无人船、无人车、自主导航系统等智能无人装备</td></tr>
+          <tr><th>产业定义</th><td>无人机、无人船、无人车、自主导航系统等智能无人装备，华南首个L4级无人驾驶公交示范区</td></tr>
           <tr><th>产业链位置</th><td>核心算法（上游）+ 装备制造（中游）+ 行业应用（下游）</td></tr>
-          <tr><th>代表企业</th><td>亿航智能、小马智行（无人出租车）、南凌科技</td></tr>
-          <tr><th>企业规模</th><td>约12家重点企业</td></tr>
-          <tr><th>关联产业</th><td>低空经济与航空航天（技术集成）、智能装备与机器人（基础技术）、半导体与集成电路（核心器件）</td></tr>
-          <tr><th>政策支持</th><td>南沙未来产业培育政策</td></tr>
-          <tr><th>竞争优势</th><td>自动驾驶/低空飞行先行示范区 + AI技术积累</td></tr>
+          <tr><th>政策支持</th><td>南沙未来产业培育政策、南沙海陆空全空间无人体系专项政策</td></tr>
+          <tr><th>竞争优势</th><td>自动驾驶/低空飞行先行示范区 + AI技术积累 + 全空间无人体系示范</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">小马智行</div><div class="ent-role" style="background:#73C0DE20;color:#73C0DE">◆ 自动驾驶</div><div class="ent-desc">L4级自动驾驶技术领军企业，Robotaxi全国示范</div></div><div class="enterprise-card"><div class="ent-name">亿航智能</div><div class="ent-role" style="background:#FAC85820;color:#FAC858">◆ 无人飞行器</div><div class="ent-desc">全球领先的自动驾驶飞行器企业，纳斯达克上市</div></div><div class="enterprise-card"><div class="ent-name">南凌科技</div><div class="ent-role" style="background:#C9CD5620;color:#C9CD56">◆ 无人系统</div><div class="ent-desc">无人船及海洋无人系统研发企业</div></div><div class="enterprise-card"><div class="ent-name">广州南沙自动驾驶示范区</div><div class="ent-role" style="background:#C9CD5620;color:#C9CD56">◆ 测试基地</div><div class="ent-desc">L4级无人驾驶公交示范运营平台</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>小马智行</span><span class="rel-arrow">→</span><span>广州南沙自动驾驶示范区</span><span class="rel-type">测试运营</span><span style="font-size:11px;color:#999">[入驻]</span></div><div class="relation-item"><span>亿航智能</span><span class="rel-arrow">→</span><span>小马智行</span><span class="rel-type">无人系统技术交流</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>南凌科技</span><span class="rel-arrow">→</span><span>广船国际</span><span class="rel-type">海洋无人装备合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-12" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #86D560;">
         <h3>12. 细胞与基因</h3>
-        <span class="industry-tag" style="background:#86D560;">🚀 未来产业</span>
+        <span class="industry-tag" style="background:#C9CD56;">🚀 未来产业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>细胞治疗、基因编辑、生物芯片、精准医疗等前沿生物技术</td></tr>
+          <tr><th>产业定义</th><td>细胞治疗、基因编辑、生物芯片、精准医疗等前沿生物技术，集聚超40家企业</td></tr>
           <tr><th>产业链位置</th><td>基础研究（上游）+ 技术开发（中游）+ 临床应用（下游）</td></tr>
-          <tr><th>代表企业</th><td>因明生物、赛莱拉干细胞、南沙生物科技</td></tr>
-          <tr><th>企业规模</th><td>约8家重点企业，快速成长中</td></tr>
-          <tr><th>关联产业</th><td>生物医药与健康（前沿技术）</td></tr>
-          <tr><th>政策支持</th><td>南沙生物技术产业扶持政策</td></tr>
-          <tr><th>竞争优势</th><td>粤港澳医疗研发合作 + 临床资源丰富</td></tr>
+          <tr><th>政策支持</th><td>南沙生物技术产业扶持政策、细胞治疗临床应用政策突破</td></tr>
+          <tr><th>竞争优势</th><td>粤港澳医疗研发合作 + 临床资源丰富 + 多项细胞治疗政策性突破</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">因明生物</div><div class="ent-role" style="background:#86D56020;color:#86D560">◆ 细胞治疗</div><div class="ent-desc">眼科及肿瘤细胞治疗创新企业，全球前沿</div></div><div class="enterprise-card"><div class="ent-name">赛莱拉干细胞</div><div class="ent-role" style="background:#86D56020;color:#86D560">◆ 干细胞</div><div class="ent-desc">国内干细胞领域领军企业，科创板上市</div></div><div class="enterprise-card"><div class="ent-name">南沙生物科技</div><div class="ent-role" style="background:#86D56020;color:#86D560">◆ 生物技术</div><div class="ent-desc">基因编辑与生物芯片研发企业</div></div><div class="enterprise-card"><div class="ent-name">粤港澳细胞治疗中心</div><div class="ent-role" style="background:#86D56020;color:#86D560">◆ 临床平台</div><div class="ent-desc">细胞治疗临床应用与转化平台</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>因明生物</span><span class="rel-arrow">→</span><span>赛莱拉干细胞</span><span class="rel-type">干细胞技术合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>因明生物</span><span class="rel-arrow">→</span><span>粤港澳细胞治疗中心</span><span class="rel-type">临床转化</span><span style="font-size:11px;color:#999">[供应链]</span></div><div class="relation-item"><span>南沙生物科技</span><span class="rel-arrow">→</span><span>因明生物</span><span class="rel-type">基因检测技术支持</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
       <div id="ind-13" class="industry-entry" style="margin-bottom: 30px; padding: 20px; background: #f8f9fb; border-radius: 10px; border-left: 4px solid #57C17B;">
         <h3>13. 深海深空</h3>
-        <span class="industry-tag" style="background:#57C17B;">🚀 未来产业</span>
+        <span class="industry-tag" style="background:#C9CD56;">🚀 未来产业</span>
         <table class="detail-table">
-          <tr><th>产业定义</th><td>深海探测装备、卫星互联网、空间技术应用等前沿领域</td></tr>
+          <tr><th>产业定义</th><td>深海探测装备、卫星互联网、空间技术应用等前沿领域，实现商业航天首次国际发射</td></tr>
           <tr><th>产业链位置</th><td>技术研发（上游）+ 装备制造（中游）+ 应用服务（下游）</td></tr>
-          <tr><th>代表企业</th><td>南方海洋科学与工程广东省实验室、南沙航天科技园</td></tr>
-          <tr><th>企业规模</th><td>约10家重点企业</td></tr>
-          <tr><th>关联产业</th><td>船舶与海洋工程（深海技术）、低空经济与航空航天（航天技术）</td></tr>
-          <tr><th>政策支持</th><td>南沙深海深空产业发展政策</td></tr>
-          <tr><th>竞争优势</th><td>深海科考装备优势 + 卫星产业布局</td></tr>
+          <tr><th>政策支持</th><td>南沙深海深空产业发展政策、商业航天专项政策</td></tr>
+          <tr><th>竞争优势</th><td>深海科考装备优势 + "梦想"号钻探船 + 卫星产业布局 + 商业航天突破</td></tr>
         </table>
+        <div style="margin-top:16px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🏢 重点企业（4家）</h4>
+          <div class="enterprise-grid"><div class="enterprise-card"><div class="ent-name">南方海洋实验室</div><div class="ent-role" style="background:#57C17B20;color:#57C17B">◆ 深海科研</div><div class="ent-desc">南方海洋科学与工程广东省实验室，深海技术研发</div></div><div class="enterprise-card"><div class="ent-name">中科宇航</div><div class="ent-role" style="background:#57C17B20;color:#57C17B">◆ 商业航天</div><div class="ent-desc">中科院旗下运载火箭企业，国际商业发射</div></div><div class="enterprise-card"><div class="ent-name">广船国际</div><div class="ent-role" style="background:#5470C620;color:#5470C6">◆ 深海装备</div><div class="ent-desc">"梦想"号大洋钻探船建造方</div></div><div class="enterprise-card"><div class="ent-name">南沙航天科技园</div><div class="ent-role" style="background:#57C17B20;color:#57C17B">◆ 航天产业园</div><div class="ent-desc">商业航天全产业链集聚园区</div></div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <h4 style="font-size:15px;margin-bottom:10px;">🔗 企业关系</h4>
+          <div class="relation-list"><div class="relation-item"><span>南方海洋实验室</span><span class="rel-arrow">→</span><span>广船国际</span><span class="rel-type">深海装备联合研发</span><span style="font-size:11px;color:#999">[技术合作]</span></div><div class="relation-item"><span>中科宇航</span><span class="rel-arrow">→</span><span>南沙航天科技园</span><span class="rel-type">入驻园区</span><span style="font-size:11px;color:#999">[入驻]</span></div><div class="relation-item"><span>广船国际</span><span class="rel-arrow">→</span><span>南方海洋实验室</span><span class="rel-type">"梦想"号钻探船合作</span><span style="font-size:11px;color:#999">[技术合作]</span></div></div>
+        </div>
       </div>
 
     </div>
+
+    <div class="card" id="policy">
+      <h2>📜 政策速递</h2>
+      <p style="color:#666;margin-bottom:16px;">南沙产业相关政策汇编</p>
+      <div id="policyList"></div>
+    </div>    </div>
 
     <div class="card" id="policy">
       <h2>📜 政策速递</h2>
